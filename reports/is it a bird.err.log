@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from duckduckgo_search import DDGS
+from fastcore.all import *
+
+def search_images(keywords, max_images=200): return L(DDGS().images(keywords, max_results=max_images)).itemgot('image')
+import time, json
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mduckduckgo_search[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DDGS
+[1;32m      2[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mfastcore[39;00m[38;5;21;01m.[39;00m[38;5;21;01mall[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      4[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21msearch_images[39m(keywords, max_images[38;5;241m=[39m[38;5;241m200[39m): [38;5;28;01mreturn[39;00m L(DDGS()[38;5;241m.[39mimages(keywords, max_results[38;5;241m=[39mmax_images))[38;5;241m.[39mitemgot([38;5;124m'[39m[38;5;124mimage[39m[38;5;124m'[39m)
+
+[0;31mModuleNotFoundError[0m: No module named 'duckduckgo_search'
+

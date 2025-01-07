@@ -1,0 +1,1521 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Prepare the model for use in an application &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'is it a bird';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Prepare the model for use in an application</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fis it a bird.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/is it a bird.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Prepare the model for use in an application</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Prepare the model for use in an application</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#NB: Kaggle requires phone verification to use the internet or a GPU. If you haven&#39;t done that yet, the cell below will fail</span>
+<span class="c1">#    This code is only here to check that your internet is enabled. It doesn&#39;t do anything else.</span>
+<span class="c1">#    Here&#39;s a help thread on getting your phone number verified: https://www.kaggle.com/product-feedback/135367</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span><span class="o">,</span><span class="nn">warnings</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">socket</span><span class="o">.</span><span class="n">setdefaulttimeout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;1.1.1.1&#39;</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
+<span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;STOP: No internet. Click &#39;&gt;|&#39; in top right and set &#39;Internet&#39; switch to on&quot;</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">pip</span> install -Uqq fastai &quot;duckduckgo_search&gt;=6.2&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
+  
+  <span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">pip subprocess to install build dependencies</span> did not run successfully.
+  <span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
+  <span class=" -Color -Color-Red">╰─&gt;</span> <span class=" -Color -Color-Red">[453 lines of output]</span>
+  <span class=" -Color -Color-Red">   </span> Ignoring numpy: markers &#39;python_version &lt; &quot;3.9&quot;&#39; don&#39;t match your environment
+  <span class=" -Color -Color-Red">   </span> Collecting setuptools
+  <span class=" -Color -Color-Red">   </span>   Using cached setuptools-75.7.0-py3-none-any.whl.metadata (6.7 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting cython&lt;3.0,&gt;=0.25
+  <span class=" -Color -Color-Red">   </span>   Using cached Cython-0.29.37-py2.py3-none-any.whl.metadata (3.1 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting cymem&lt;2.1.0,&gt;=2.0.2
+  <span class=" -Color -Color-Red">   </span>   Using cached cymem-2.0.10-cp313-cp313-macosx_11_0_arm64.whl.metadata (8.4 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting preshed&lt;3.1.0,&gt;=3.0.2
+  <span class=" -Color -Color-Red">   </span>   Using cached preshed-3.0.9-cp313-cp313-macosx_15_0_arm64.whl
+  <span class=" -Color -Color-Red">   </span> Collecting murmurhash&lt;1.1.0,&gt;=0.28.0
+  <span class=" -Color -Color-Red">   </span>   Using cached murmurhash-1.0.11-cp313-cp313-macosx_11_0_arm64.whl.metadata (2.0 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting thinc&lt;8.4.0,&gt;=8.3.0
+  <span class=" -Color -Color-Red">   </span>   Using cached thinc-8.3.2.tar.gz (193 kB)
+  <span class=" -Color -Color-Red">   </span>   Installing build dependencies: started
+  <span class=" -Color -Color-Red">   </span>   Installing build dependencies: finished with status &#39;done&#39;
+  <span class=" -Color -Color-Red">   </span>   Getting requirements to build wheel: started
+  <span class=" -Color -Color-Red">   </span>   Getting requirements to build wheel: finished with status &#39;done&#39;
+  <span class=" -Color -Color-Red">   </span>   Preparing metadata (pyproject.toml): started
+  <span class=" -Color -Color-Red">   </span>   Preparing metadata (pyproject.toml): finished with status &#39;done&#39;
+  <span class=" -Color -Color-Red">   </span> Collecting numpy&lt;2.1.0,&gt;=2.0.0
+  <span class=" -Color -Color-Red">   </span>   Using cached numpy-2.0.2-cp313-cp313-macosx_15_0_arm64.whl
+  <span class=" -Color -Color-Red">   </span> Collecting blis&lt;1.1.0,&gt;=1.0.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached blis-1.0.2-cp313-cp313-macosx_11_0_arm64.whl.metadata (7.6 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting wasabi&lt;1.2.0,&gt;=0.8.1 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached wasabi-1.1.3-py3-none-any.whl.metadata (28 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting srsly&lt;3.0.0,&gt;=2.4.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached srsly-2.5.0-cp313-cp313-macosx_11_0_arm64.whl.metadata (19 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting catalogue&lt;2.1.0,&gt;=2.0.4 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached catalogue-2.0.10-py3-none-any.whl.metadata (14 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting confection&lt;1.0.0,&gt;=0.0.1 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached confection-0.1.5-py3-none-any.whl.metadata (19 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached pydantic-2.10.4-py3-none-any.whl.metadata (29 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting packaging&gt;=20.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting annotated-types&gt;=0.6.0 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting pydantic-core==2.27.2 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl.metadata (6.6 kB)
+  <span class=" -Color -Color-Red">   </span> Collecting typing-extensions&gt;=4.12.2 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
+  <span class=" -Color -Color-Red">   </span>   Using cached typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached setuptools-75.7.0-py3-none-any.whl (1.2 MB)
+  <span class=" -Color -Color-Red">   </span> Using cached Cython-0.29.37-py2.py3-none-any.whl (989 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached cymem-2.0.10-cp313-cp313-macosx_11_0_arm64.whl (41 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached murmurhash-1.0.11-cp313-cp313-macosx_11_0_arm64.whl (26 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached blis-1.0.2-cp313-cp313-macosx_11_0_arm64.whl (1.1 MB)
+  <span class=" -Color -Color-Red">   </span> Using cached catalogue-2.0.10-py3-none-any.whl (17 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached confection-0.1.5-py3-none-any.whl (35 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached packaging-24.2-py3-none-any.whl (65 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached pydantic-2.10.4-py3-none-any.whl (431 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl (1.8 MB)
+  <span class=" -Color -Color-Red">   </span> Using cached srsly-2.5.0-cp313-cp313-macosx_11_0_arm64.whl (632 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached wasabi-1.1.3-py3-none-any.whl (27 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
+  <span class=" -Color -Color-Red">   </span> Using cached typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+  <span class=" -Color -Color-Red">   </span> Building wheels for collected packages: thinc
+  <span class=" -Color -Color-Red">   </span>   Building wheel for thinc (pyproject.toml): started
+  <span class=" -Color -Color-Red">   </span>   Building wheel for thinc (pyproject.toml): finished with status &#39;error&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
+  <span class=" -Color -Color-Red">   </span> 
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">Building wheel for thinc </span><span class=" -Color -Color-Bold -Color-Bold-Green">(</span><span class=" -Color -Color-Green">pyproject.toml</span><span class=" -Color -Color-Bold -Color-Bold-Green">)</span> did not run successfully.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">╰─&gt;</span> <span class=" -Color -Color-Red">[383 lines of output]</span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> Cythonizing sources
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running bdist_wheel
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build_py
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/config.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/compat.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/mypy.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/types.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/about.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/model.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/optimizers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/api.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/loss.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/initializers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/schedules.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/remap_ids.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_debug.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/mxnetwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/siamese.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/concatenate.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_sum.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/softmax_activation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hashembed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/expand_window.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2padded.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_padded.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_nvtx_range.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/layernorm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/maxout.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/add.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/embed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/residual.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_first.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/parametricattention_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/chain.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/logistic.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/gelu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_cpu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/torchscriptwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/mish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sigmoid_activation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/pytorchwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_array.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/bidirectional.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hard_swish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/uniqued.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/padded2list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/cauchysimilarity.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_array2d.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/strings2arrays.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_getitem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_flatten_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/clipped_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_reshape.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/tensorflowwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hard_swish_mobilenet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/noop.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/relu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/swish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_signpost_interval.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/ragged2list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/tuplify.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_ragged.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2ragged.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/map_list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/dropout.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_last.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2array.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/lstm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_max.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_flatten.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/resizable.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sigmoid.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/multisoftmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/softmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_mean.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/array_getitem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/dish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/parametricattention.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/clone.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/mps_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_param_server.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cupy_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_custom_kernels.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_cupy_allocators.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/conftest.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/enable_mxnet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/strategies.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_schedules.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_initializers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_optimizers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_indexing.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_config.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_serialize.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_loss.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_import__all__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/enable_tensorflow.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_examples.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_types.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/mxnet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/tensorflow.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/pytorch.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/torchscript.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/pytorch_grad_scaler.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/shim.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_flatten.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_hash_embed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_layers_api.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_transforms.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_sparse_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_uniqued.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_combinators.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_tensorflow_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_resizable.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mnist.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_feed_forward.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_torchscriptwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_parametric_attention_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_reduce.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mappers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_transforms.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_softmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_pytorch_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_debug.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mxnet_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_shim.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_lstm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_basic_tagger.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/test_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/test_mem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/extra/test_beam_search.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/extra/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/shims/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/shims/test_pytorch_grad_scaler.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/test_mypy.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/test_model.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/test_validation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/test_issue208.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/test_issue564.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/fail_no_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/success_no_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/fail_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/success_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/test_issue519.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/program.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/tests/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running egg_info
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing thinc.egg-info/PKG-INFO
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing dependency_links to thinc.egg-info/dependency_links.txt
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing entry points to thinc.egg-info/entry_points.txt
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing requirements to thinc.egg-info/requires.txt
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing top-level names to thinc.egg-info/top_level.txt
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/Python.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayscalars.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarraytypes.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ufuncobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/Python.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayscalars.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarraytypes.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ufuncobject.h won&#39;t be automatically included in the manifest: the path must be relative
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> reading manifest file &#39;thinc.egg-info/SOURCES.txt&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> reading manifest template &#39;MANIFEST.in&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> no previously-included directories found matching &#39;tmp&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> adding license file &#39;LICENSE&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing manifest file &#39;thinc.egg-info/SOURCES.txt&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/setuptools/command/build_py.py:212: _Warning: Package &#39;thinc.tests.mypy.configs&#39; is absent from the `packages` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         # Package would be ignored #
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Python recognizes &#39;thinc.tests.mypy.configs&#39; as an importable package[^1],
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         but it is absent from setuptools&#39; `packages` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         This leads to an ambiguous overall configuration. If you want to distribute this
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         package, please make sure that &#39;thinc.tests.mypy.configs&#39; is explicitly added
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         to the `packages` configuration field.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Alternatively, you can also rely on setuptools&#39; discovery methods
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         (for example by using `find_namespace_packages(...)`/`find_namespace:`
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         instead of `find_packages(...)`/`find:`).
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package discovery&quot; on setuptools documentation page:
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         If you don&#39;t want &#39;thinc.tests.mypy.configs&#39; to be distributed and are
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         already explicitly excluding &#39;thinc.tests.mypy.configs&#39; via
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         you can try to use `exclude_package_data`, or `include-package-data=False` in
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         combination with a more fine grained `package-data` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package data files&quot; on setuptools documentation page:
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         [^1]: For Python, any directory (with suitable naming) can be imported,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               even if it does not contain any `.py` files.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               On the other hand, currently there is no concept of package data
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               directory, all directories are treated like packages.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   check.warn(importable)
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/setuptools/command/build_py.py:212: _Warning: Package &#39;thinc.tests.mypy.outputs&#39; is absent from the `packages` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         # Package would be ignored #
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Python recognizes &#39;thinc.tests.mypy.outputs&#39; as an importable package[^1],
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         but it is absent from setuptools&#39; `packages` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         This leads to an ambiguous overall configuration. If you want to distribute this
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         package, please make sure that &#39;thinc.tests.mypy.outputs&#39; is explicitly added
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         to the `packages` configuration field.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Alternatively, you can also rely on setuptools&#39; discovery methods
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         (for example by using `find_namespace_packages(...)`/`find_namespace:`
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         instead of `find_packages(...)`/`find:`).
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package discovery&quot; on setuptools documentation page:
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         If you don&#39;t want &#39;thinc.tests.mypy.outputs&#39; to be distributed and are
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         already explicitly excluding &#39;thinc.tests.mypy.outputs&#39; via
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         you can try to use `exclude_package_data`, or `include-package-data=False` in
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         combination with a more fine grained `package-data` configuration.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package data files&quot; on setuptools documentation page:
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         [^1]: For Python, any directory (with suitable naming) can be imported,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               even if it does not contain any `.py` files.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               On the other hand, currently there is no concept of package data
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               directory, all directories are treated like packages.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   check.warn(importable)
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/py.typed -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/premap_ids.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sparselinear.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_custom_kernels.cu -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_murmur3.cu -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cblas.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cblas.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cpu_kernels.hh -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/linalg.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/linalg.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/numpy_ops.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/numpy_ops.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/search.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/search.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/configs/mypy-default.ini -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/configs/mypy-plugin.ini -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/fail-no-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/fail-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/success-no-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/success-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/tests/c_test_search.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build_ext
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> building &#39;thinc.backends.cblas&#39; extension
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/temp.macosx-15.0-arm64-cpython-313/thinc/backends
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> clang++ -fno-strict-overflow -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -O3 -Wall -I/private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-m4mxq7ow/overlay/lib/python3.13/site-packages/numpy/_core/include -I/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13 -I/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/include -I/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13 -c thinc/backends/cblas.cpp -o build/temp.macosx-15.0-arm64-cpython-313/thinc/backends/cblas.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:871:59: warning: &#39;Py_UNICODE&#39; is deprecated [-Wdeprecated-declarations]
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   871 | static CYTHON_INLINE size_t __Pyx_Py_UNICODE_strlen(const Py_UNICODE *u) {
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                           ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/unicodeobject.h:10:1: note: &#39;Py_UNICODE&#39; has been explicitly marked deprecated here
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    10 | Py_DEPRECATED(3.13) typedef wchar_t Py_UNICODE;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       | ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/pyport.h:251:54: note: expanded from macro &#39;Py_DEPRECATED&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   251 | #define Py_DEPRECATED(VERSION_UNUSED) __attribute__((__deprecated__))
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                      ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:872:11: warning: &#39;Py_UNICODE&#39; is deprecated [-Wdeprecated-declarations]
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   872 |     const Py_UNICODE *u_end = u;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |           ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/unicodeobject.h:10:1: note: &#39;Py_UNICODE&#39; has been explicitly marked deprecated here
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    10 | Py_DEPRECATED(3.13) typedef wchar_t Py_UNICODE;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       | ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/pyport.h:251:54: note: expanded from macro &#39;Py_DEPRECATED&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   251 | #define Py_DEPRECATED(VERSION_UNUSED) __attribute__((__deprecated__))
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                      ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1908:22: error: use of undeclared identifier &#39;_PyList_Extend&#39;; did you mean &#39;PyList_Extend&#39;?
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1908 |     PyObject* none = _PyList_Extend((PyListObject*)L, v);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                      ^~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                      PyList_Extend
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/listobject.h:52:17: note: &#39;PyList_Extend&#39; declared here
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    52 | PyAPI_FUNC(int) PyList_Extend(PyObject *self, PyObject *iterable);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1908:37: error: cannot initialize a parameter of type &#39;PyObject *&#39; (aka &#39;_object *&#39;) with an rvalue of type &#39;PyListObject *&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1908 |     PyObject* none = _PyList_Extend((PyListObject*)L, v);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                     ^~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/listobject.h:52:41: note: passing argument to parameter &#39;self&#39; here
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    52 | PyAPI_FUNC(int) PyList_Extend(PyObject *self, PyObject *iterable);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                         ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1946:39: error: use of undeclared identifier &#39;_PyInterpreterState_GetConfig&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1946 |     __pyx_assertions_enabled_flag = ! _PyInterpreterState_GetConfig(__Pyx_PyThreadState_Current-&gt;interp)-&gt;optimization_level;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                       ^
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20354:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20354 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20550:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20550 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20822:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20822 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> 2 warnings and 6 errors generated.
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> error: command &#39;/usr/bin/clang++&#39; failed with exit code 1
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">[end of output]</span>
+  <span class=" -Color -Color-Red">   </span> 
+  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
+  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">  ERROR: Failed building wheel for thinc</span>
+<span class=" -Color -Color-Red">     </span> Failed to build thinc
+  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based projects (thinc)</span>
+<span class=" -Color -Color-Red">     </span> 
+  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">[end of output]</span>
+  
+  <span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
+
+<span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">pip subprocess to install build dependencies</span> did not run successfully.
+<span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
+<span class=" -Color -Color-Red">╰─&gt;</span> See above for output.
+
+<span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">duckduckgo_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastcore.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">search_images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">DDGS</span><span class="p">()</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_images</span><span class="p">))</span><span class="o">.</span><span class="n">itemgot</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">duckduckgo_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">fastcore.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span><span class="w"> </span><span class="nf">search_images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">DDGS</span><span class="p">()</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_images</span><span class="p">))</span><span class="o">.</span><span class="n">itemgot</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;duckduckgo_search&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#NB: `search_images` depends on duckduckgo.com, which doesn&#39;t always return correct responses.</span>
+<span class="c1">#    If you get a JSON error, just try running it again (it may take a couple of tries).</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="n">search_images</span><span class="p">(</span><span class="s1">&#39;bird photos&#39;</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://images.pexels.com/photos/326900/pexels-photo-326900.jpeg?cs=srgb&amp;dl=wood-flight-bird-326900.jpg&amp;fm=jpg&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastdownload</span><span class="w"> </span><span class="kn">import</span> <span class="n">download_url</span>
+<span class="n">dest</span> <span class="o">=</span> <span class="s1">&#39;bird.jpg&#39;</span>
+<span class="n">download_url</span><span class="p">(</span><span class="n">urls</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dest</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastai.vision.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">to_thumb</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span><span class="mi">256</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: &#39;dlopen(/opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/image.so, 0x0006): Symbol not found: __ZN3c1017RegisterOperatorsD1Ev
+  Referenced from: &lt;CFED5F8E-EC3F-36FD-AAA3-2C6C7F8D3DD9&gt; /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/image.so
+  Expected in:     &lt;C62FA868-4C49-3B20-AFA6-2F7F59A295B4&gt; /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torch/lib/libtorch_cpu.dylib&#39;If you don&#39;t plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+</pre></div>
+</div>
+<img alt="_images/4e5ed276e7b57ef02b8fcec0ef81f4aa955f16d274694b589cb4d0196f505403.png" src="_images/4e5ed276e7b57ef02b8fcec0ef81f4aa955f16d274694b589cb4d0196f505403.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">download_url</span><span class="p">(</span><span class="n">search_images</span><span class="p">(</span><span class="s1">&#39;forest photos&#39;</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;forest.jpg&#39;</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;forest.jpg&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_thumb</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span><span class="mi">256</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" src="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">searches</span> <span class="o">=</span> <span class="s1">&#39;forest&#39;</span><span class="p">,</span><span class="s1">&#39;bird&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;bird_or_not&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">searches</span><span class="p">:</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
+    <span class="n">dest</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">download_images</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">urls</span><span class="o">=</span><span class="n">search_images</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> photo&#39;</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">resize_images</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">failed</span> <span class="o">=</span> <span class="n">verify_images</span><span class="p">(</span><span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+<span class="n">failed</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">unlink</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">failed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span>
+    <span class="n">blocks</span><span class="o">=</span><span class="p">(</span><span class="n">ImageBlock</span><span class="p">,</span> <span class="n">CategoryBlock</span><span class="p">),</span> 
+    <span class="n">get_items</span><span class="o">=</span><span class="n">get_image_files</span><span class="p">,</span> 
+    <span class="n">splitter</span><span class="o">=</span><span class="n">RandomSplitter</span><span class="p">(</span><span class="n">valid_pct</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="n">get_y</span><span class="o">=</span><span class="n">parent_label</span><span class="p">,</span>
+    <span class="n">item_tfms</span><span class="o">=</span><span class="p">[</span><span class="n">Resize</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;squish&#39;</span><span class="p">)]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+
+<span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1447155a279c6700afbee0fcef3deab753ced8e115f83008418371d678b4ecf0.png" src="_images/1447155a279c6700afbee0fcef3deab753ced8e115f83008418371d678b4ecf0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">vision_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">resnet18</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">error_rate</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.269725</td>
+      <td>0.000067</td>
+      <td>0.000000</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table></div><div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.006448</td>
+      <td>0.000033</td>
+      <td>0.000000</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.002951</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>00:03</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.002972</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>00:03</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">probs</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">PILImage</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;bird.jpg&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is a: </span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probability it&#39;s a </span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is a: bird.
+Probability it&#39;s a bird: 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">probs</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">PILImage</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;forest.jpg&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is a: </span><span class="si">{</span><span class="nb">type</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probability it&#39;s a forest: </span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is a: forest.
+Probability it&#39;s a forest: 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="prepare-the-model-for-use-in-an-application">
+<h1>Prepare the model for use in an application<a class="headerlink" href="#prepare-the-model-for-use-in-an-application" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># export the model for use in an application (export.pkl)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">export</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the model for use in an application</span>
+<span class="n">learn_inf</span> <span class="o">=</span> <span class="n">load_learner</span><span class="p">(</span><span class="s1">&#39;export.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print the model&#39;s vocabulary</span>
+<span class="n">learn_inf</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">vocab</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bird&#39;, &#39;forest&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="s1">&#39;bird.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;bird&#39;, tensor(0), tensor([1.0000e+00, 3.4342e-10]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="create-an-application-to-use-the-model">
+<h1>Create an application to use the model<a class="headerlink" href="#create-an-application-to-use-the-model" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-Uqq<span class="w"> </span>fastai
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastai</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastai.vision.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">btn_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">()</span>
+<span class="n">btn_upload</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "83eb510552e749a0b57f341cad66fc44", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+<span class="c1"># create a button to do classification</span>
+<span class="n">btn_run</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Classify&#39;</span><span class="p">)</span>
+<span class="n">btn_run</span>
+
+<span class="c1"># display the prediction via labels</span>
+<span class="n">lbl_pred</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Label</span><span class="p">()</span>
+<span class="n">lbl_pred</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Prediction: </span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="s1">; Probability: </span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.04f</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">lbl_pred</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_click_classify</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">uploaded_file</span> <span class="o">=</span> <span class="n">btn_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">PILImage</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">uploaded_file</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()))</span>
+    <span class="n">out_pl</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">out_pl</span><span class="p">:</span> <span class="n">display</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">to_thumb</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">))</span>
+    <span class="n">pred</span><span class="p">,</span><span class="n">pred_idx</span><span class="p">,</span><span class="n">probs</span> <span class="o">=</span> <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">lbl_pred</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Prediction: </span><span class="si">{</span><span class="n">pred</span><span class="si">}</span><span class="s1">; Probability: </span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.04f</span><span class="si">}</span><span class="s1">&#39;</span>
+
+<span class="n">btn_run</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_click_classify</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"></div><div class="output text_html">
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div><div class="output text_html"></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VBox</span><span class="p">([</span><span class="n">widgets</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Select your image!&#39;</span><span class="p">),</span> 
+      <span class="n">btn_upload</span><span class="p">,</span> <span class="n">btn_run</span><span class="p">,</span> <span class="n">out_pl</span><span class="p">,</span> <span class="n">lbl_pred</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "30ed895b4cc4484ab62668cd1c26a893", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>voila
+<span class="o">!</span>jupyter<span class="w"> </span>server<span class="w"> </span>extension<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--sys-prefix<span class="w"> </span>voila
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting voila
+  Downloading voila-0.5.8-py3-none-any.whl.metadata (9.5 kB)
+Requirement already satisfied: jupyter-client&lt;9,&gt;=7.4.4 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (8.6.3)
+Requirement already satisfied: jupyter-core&gt;=4.11.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (5.7.2)
+Requirement already satisfied: jupyter-server&lt;3,&gt;=1.18 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (2.15.0)
+Requirement already satisfied: jupyterlab-server&lt;3,&gt;=2.3.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (2.27.3)
+Requirement already satisfied: nbclient&gt;=0.4.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (0.10.2)
+Requirement already satisfied: nbconvert&lt;8,&gt;=6.4.5 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (7.16.5)
+Requirement already satisfied: traitlets&lt;6,&gt;=5.0.3 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from voila) (5.14.3)
+Collecting websockets&gt;=9.0 (from voila)
+  Downloading websockets-14.1-cp311-cp311-macosx_11_0_arm64.whl.metadata (6.7 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-client&lt;9,&gt;=7.4.4-&gt;voila) (2.9.0.post0)
+Requirement already satisfied: pyzmq&gt;=23.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-client&lt;9,&gt;=7.4.4-&gt;voila) (26.2.0)
+Requirement already satisfied: tornado&gt;=6.2 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-client&lt;9,&gt;=7.4.4-&gt;voila) (6.4.2)
+Requirement already satisfied: platformdirs&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-core&gt;=4.11.0-&gt;voila) (4.3.6)
+Requirement already satisfied: anyio&gt;=3.1.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (4.8.0)
+Requirement already satisfied: argon2-cffi&gt;=21.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (23.1.0)
+Requirement already satisfied: jinja2&gt;=3.0.3 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (3.1.5)
+Requirement already satisfied: jupyter-events&gt;=0.11.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.11.0)
+Requirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.5.3)
+Requirement already satisfied: nbformat&gt;=5.3.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (5.10.4)
+Requirement already satisfied: overrides&gt;=5.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (7.7.0)
+Requirement already satisfied: packaging&gt;=22.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (24.2)
+Requirement already satisfied: prometheus-client&gt;=0.9 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.21.1)
+Requirement already satisfied: send2trash&gt;=1.8.2 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.8.3)
+Requirement already satisfied: terminado&gt;=0.8.3 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.18.1)
+Requirement already satisfied: websocket-client&gt;=1.7 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.8.0)
+Requirement already satisfied: babel&gt;=2.10 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (2.16.0)
+Requirement already satisfied: json5&gt;=0.9.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (0.10.0)
+Requirement already satisfied: jsonschema&gt;=4.18.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (4.23.0)
+Requirement already satisfied: requests&gt;=2.31 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (2.32.3)
+Requirement already satisfied: beautifulsoup4 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (4.12.3)
+Requirement already satisfied: bleach!=5.0.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from bleach[css]!=5.0.0-&gt;nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (6.2.0)
+Requirement already satisfied: defusedxml in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (0.3.0)
+Requirement already satisfied: markupsafe&gt;=2.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (3.0.2)
+Requirement already satisfied: mistune&lt;4,&gt;=2.0.3 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (3.1.0)
+Requirement already satisfied: pandocfilters&gt;=1.4.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (1.5.0)
+Requirement already satisfied: pygments&gt;=2.4.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (2.18.0)
+Requirement already satisfied: idna&gt;=2.8 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from anyio&gt;=3.1.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (3.10)
+Requirement already satisfied: sniffio&gt;=1.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from anyio&gt;=3.1.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.3.1)
+Requirement already satisfied: typing_extensions&gt;=4.5 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from anyio&gt;=3.1.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (4.12.2)
+Requirement already satisfied: argon2-cffi-bindings in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (21.2.0)
+Requirement already satisfied: webencodings in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from bleach!=5.0.0-&gt;bleach[css]!=5.0.0-&gt;nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (0.5.1)
+Requirement already satisfied: tinycss2&lt;1.5,&gt;=1.1.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from bleach[css]!=5.0.0-&gt;nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (1.4.0)
+Requirement already satisfied: attrs&gt;=22.2.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (24.3.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (2024.10.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (0.35.1)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (0.10.6)
+Requirement already satisfied: python-json-logger&gt;=2.0.4 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (2.0.7)
+Requirement already satisfied: pyyaml&gt;=5.3 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (6.0.2)
+Requirement already satisfied: rfc3339-validator in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.1.4)
+Requirement already satisfied: rfc3986-validator&gt;=0.1.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.1.1)
+Requirement already satisfied: fastjsonschema&gt;=2.15 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from nbformat&gt;=5.3.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (2.21.1)
+Requirement already satisfied: six&gt;=1.5 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from python-dateutil&gt;=2.8.2-&gt;jupyter-client&lt;9,&gt;=7.4.4-&gt;voila) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (3.4.1)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (2.3.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.3.0-&gt;voila) (2024.12.14)
+Requirement already satisfied: ptyprocess in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from terminado&gt;=0.8.3-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (0.7.0)
+Requirement already satisfied: soupsieve&gt;1.2 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from beautifulsoup4-&gt;nbconvert&lt;8,&gt;=6.4.5-&gt;voila) (2.5)
+Requirement already satisfied: fqdn in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.5.1)
+Requirement already satisfied: isoduration in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (20.11.0)
+Requirement already satisfied: jsonpointer&gt;1.13 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (2.0)
+Requirement already satisfied: uri-template in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.3.0)
+Requirement already satisfied: webcolors&gt;=24.6.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (24.11.1)
+Requirement already satisfied: cffi&gt;=1.0.1 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.17.1)
+Requirement already satisfied: pycparser in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (2.22)
+Requirement already satisfied: arrow&gt;=0.15.0 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (1.3.0)
+Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=1.18-&gt;voila) (2.9.0.20241206)
+Downloading voila-0.5.8-py3-none-any.whl (4.5 MB)
+   <span class=" -Color -Color-Red">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Green">4.5/4.5 MB</span> <span class=" -Color -Color-Red">45.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hDownloading websockets-14.1-cp311-cp311-macosx_11_0_arm64.whl (159 kB)
+Installing collected packages: websockets, voila
+Successfully installed voila-0.5.8 websockets-14.1
+usage: jupyter [-h] [--version] [--config-dir] [--data-dir] [--runtime-dir]
+               [--paths] [--json] [--debug]
+               [subcommand]
+
+Jupyter: Interactive Computing
+
+positional arguments:
+  subcommand     the subcommand to launch
+
+options:
+  -h, --help     show this help message and exit
+  --version      show the versions of core jupyter packages and exit
+  --config-dir   show Jupyter config dir
+  --data-dir     show Jupyter data dir
+  --runtime-dir  show Jupyter runtime dir
+  --paths        show all Jupyter paths. Add --json for machine-readable
+                 format.
+  --json         output paths as machine-readable json
+  --debug        output debug information about paths
+
+Available subcommands: console dejavu events execute kernel kernelspec lab
+labextension labhub migrate nbconvert notebook run server troubleshoot trust
+
+Jupyter command `jupyter-serverextension` not found.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Prepare the model for use in an application</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
