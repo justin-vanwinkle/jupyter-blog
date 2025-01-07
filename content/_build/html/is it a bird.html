@@ -396,11 +396,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -440,9 +435,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/33b1e58b0906c3617c4002fff287ace0e80b3966fa5d4333c46765991f2f28a9.png" src="_images/33b1e58b0906c3617c4002fff287ace0e80b3966fa5d4333c46765991f2f28a9.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -452,7 +444,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7cb4f73a8b1873eb0806b8a0c90be9c0fcf06dbda940d0ba996ddfebe956bc66.png" src="_images/7cb4f73a8b1873eb0806b8a0c90be9c0fcf06dbda940d0ba996ddfebe956bc66.png" />
+<img alt="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" src="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -466,87 +458,6 @@
     <span class="n">download_images</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">urls</span><span class="o">=</span><span class="n">search_images</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> photo&#39;</span><span class="p">))</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">resize_images</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">download_images</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">urls</span><span class="o">=</span><span class="n">search_images</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> photo&#39;</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">resize_images</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastai/vision/utils.py:104,</span> in <span class="ni">resize_images</span><span class="nt">(path, max_workers, max_size, recurse, dest, n_channels, ext, img_format, resample, resume, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">files</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="n">recurse</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">parallel</span><span class="p">(</span><span class="n">resize_image</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">max_size</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span> <span class="n">n_channels</span><span class="o">=</span><span class="n">n_channels</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="n">ext</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                <span class="n">img_format</span><span class="o">=</span><span class="n">img_format</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="n">resample</span><span class="p">,</span> <span class="n">resume</span><span class="o">=</span><span class="n">resume</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/parallel.py:134,</span> in <span class="ni">parallel</span><span class="nt">(f, items, n_workers, total, progress, pause, method, threadpool, timeout, chunksize, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="k">if</span> <span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">progress_bar</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">134</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/foundation.py:100,</span> in <span class="ni">_L_Meta.__call__</span><span class="nt">(cls, x, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="bp">cls</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span>
-<span class="ne">--&gt; </span><span class="mi">100</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/foundation.py:108,</span> in <span class="ni">L.__init__</span><span class="nt">(self, items, use_list, match, *rest)</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="k">if</span> <span class="p">(</span><span class="n">use_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_array</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">items</span> <span class="o">=</span> <span class="n">listify</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="n">use_list</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/basics.py:79,</span> in <span class="ni">listify</span><span class="nt">(o, use_list, match, *rest)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="n">o</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_array</span><span class="p">(</span><span class="n">o</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">79</span> <span class="k">elif</span> <span class="n">is_iter</span><span class="p">(</span><span class="n">o</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">else</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/process.py:575,</span> in <span class="ni">_chain_from_iterable_of_lists</span><span class="nt">(iterable)</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span><span class="w"> </span><span class="nf">_chain_from_iterable_of_lists</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="sd">     Specialized implementation of itertools.chain.from_iterable.</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span><span class="sd">     Each item in *iterable* should be a list.  This function is</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span><span class="sd">     careful not to keep references to yielded objects.</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">575</span>     <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">576</span>         <span class="n">element</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span>         <span class="k">while</span> <span class="n">element</span><span class="p">:</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:621,</span> in <span class="ni">Executor.map.&lt;locals&gt;.result_iterator</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">618</span> <span class="k">while</span> <span class="n">fs</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">619</span>     <span class="c1"># Careful not to keep a reference to the popped future</span>
-<span class="g g-Whitespace">    </span><span class="mi">620</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">621</span>         <span class="k">yield</span> <span class="n">_result_or_cancel</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span>         <span class="k">yield</span> <span class="n">_result_or_cancel</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">())</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:319,</span> in <span class="ni">_result_or_cancel</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">319</span>         <span class="k">return</span> <span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">fut</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:453,</span> in <span class="ni">Future.result</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">FINISHED</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_result</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">453</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CANCELLED</span><span class="p">,</span> <span class="n">CANCELLED_AND_NOTIFIED</span><span class="p">]:</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="k">raise</span> <span class="n">CancelledError</span><span class="p">()</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/threading.py:320,</span> in <span class="ni">Condition.wait</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">try</span><span class="p">:</span>    <span class="c1"># restore state no matter what (e.g., KeyboardInterrupt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">320</span>         <span class="n">waiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">gotit</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">else</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
