@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+- file: is it a bird
 - file: markdown
 - file: notebooks
 - file: markdown-notebooks
-- file: is it a bird

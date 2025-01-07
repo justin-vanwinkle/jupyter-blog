@@ -63,7 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'is it a bird';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -168,12 +169,10 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Is it a bird?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Is it a bird?</a></li>
-
-
 </ul>
 
     </div>
@@ -366,11 +365,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Is it a bird?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-model-for-use-in-an-application">Prepare the model for use in an application</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-model-for-use-in-an-application">Prepare the model for use in an application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -384,13 +382,11 @@
   <section class="tex2jax_ignore mathjax_ignore" id="is-it-a-bird">
 <h1>Is it a bird?<a class="headerlink" href="#is-it-a-bird" title="Link to this heading">#</a></h1>
 <p>This is an book to show how fastai can be trained and used to classify images.</p>
+<section id="train-the-model">
+<h2>Train the model<a class="headerlink" href="#train-the-model" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#NB: Kaggle requires phone verification to use the internet or a GPU. If you haven&#39;t done that yet, the cell below will fail</span>
-<span class="c1">#    This code is only here to check that your internet is enabled. It doesn&#39;t do anything else.</span>
-<span class="c1">#    Here&#39;s a help thread on getting your phone number verified: https://www.kaggle.com/product-feedback/135367</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span><span class="o">,</span><span class="nn">warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span><span class="o">,</span><span class="nn">warnings</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">socket</span><span class="o">.</span><span class="n">setdefaulttimeout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;1.1.1.1&#39;</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
@@ -401,476 +397,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
-  
-  <span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">pip subprocess to install build dependencies</span> did not run successfully.
-  <span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
-  <span class=" -Color -Color-Red">╰─&gt;</span> <span class=" -Color -Color-Red">[453 lines of output]</span>
-  <span class=" -Color -Color-Red">   </span> Ignoring numpy: markers &#39;python_version &lt; &quot;3.9&quot;&#39; don&#39;t match your environment
-  <span class=" -Color -Color-Red">   </span> Collecting setuptools
-  <span class=" -Color -Color-Red">   </span>   Using cached setuptools-75.7.0-py3-none-any.whl.metadata (6.7 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting cython&lt;3.0,&gt;=0.25
-  <span class=" -Color -Color-Red">   </span>   Using cached Cython-0.29.37-py2.py3-none-any.whl.metadata (3.1 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting cymem&lt;2.1.0,&gt;=2.0.2
-  <span class=" -Color -Color-Red">   </span>   Using cached cymem-2.0.10-cp313-cp313-macosx_11_0_arm64.whl.metadata (8.4 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting preshed&lt;3.1.0,&gt;=3.0.2
-  <span class=" -Color -Color-Red">   </span>   Using cached preshed-3.0.9-cp313-cp313-macosx_15_0_arm64.whl
-  <span class=" -Color -Color-Red">   </span> Collecting murmurhash&lt;1.1.0,&gt;=0.28.0
-  <span class=" -Color -Color-Red">   </span>   Using cached murmurhash-1.0.11-cp313-cp313-macosx_11_0_arm64.whl.metadata (2.0 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting thinc&lt;8.4.0,&gt;=8.3.0
-  <span class=" -Color -Color-Red">   </span>   Using cached thinc-8.3.2.tar.gz (193 kB)
-  <span class=" -Color -Color-Red">   </span>   Installing build dependencies: started
-  <span class=" -Color -Color-Red">   </span>   Installing build dependencies: finished with status &#39;done&#39;
-  <span class=" -Color -Color-Red">   </span>   Getting requirements to build wheel: started
-  <span class=" -Color -Color-Red">   </span>   Getting requirements to build wheel: finished with status &#39;done&#39;
-  <span class=" -Color -Color-Red">   </span>   Preparing metadata (pyproject.toml): started
-  <span class=" -Color -Color-Red">   </span>   Preparing metadata (pyproject.toml): finished with status &#39;done&#39;
-  <span class=" -Color -Color-Red">   </span> Collecting numpy&lt;2.1.0,&gt;=2.0.0
-  <span class=" -Color -Color-Red">   </span>   Using cached numpy-2.0.2-cp313-cp313-macosx_15_0_arm64.whl
-  <span class=" -Color -Color-Red">   </span> Collecting blis&lt;1.1.0,&gt;=1.0.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached blis-1.0.2-cp313-cp313-macosx_11_0_arm64.whl.metadata (7.6 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting wasabi&lt;1.2.0,&gt;=0.8.1 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached wasabi-1.1.3-py3-none-any.whl.metadata (28 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting srsly&lt;3.0.0,&gt;=2.4.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached srsly-2.5.0-cp313-cp313-macosx_11_0_arm64.whl.metadata (19 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting catalogue&lt;2.1.0,&gt;=2.0.4 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached catalogue-2.0.10-py3-none-any.whl.metadata (14 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting confection&lt;1.0.0,&gt;=0.0.1 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached confection-0.1.5-py3-none-any.whl.metadata (19 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached pydantic-2.10.4-py3-none-any.whl.metadata (29 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting packaging&gt;=20.0 (from thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached packaging-24.2-py3-none-any.whl.metadata (3.2 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting annotated-types&gt;=0.6.0 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting pydantic-core==2.27.2 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl.metadata (6.6 kB)
-  <span class=" -Color -Color-Red">   </span> Collecting typing-extensions&gt;=4.12.2 (from pydantic!=1.8,!=1.8.1,&lt;3.0.0,&gt;=1.7.4-&gt;thinc&lt;8.4.0,&gt;=8.3.0)
-  <span class=" -Color -Color-Red">   </span>   Using cached typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached setuptools-75.7.0-py3-none-any.whl (1.2 MB)
-  <span class=" -Color -Color-Red">   </span> Using cached Cython-0.29.37-py2.py3-none-any.whl (989 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached cymem-2.0.10-cp313-cp313-macosx_11_0_arm64.whl (41 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached murmurhash-1.0.11-cp313-cp313-macosx_11_0_arm64.whl (26 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached blis-1.0.2-cp313-cp313-macosx_11_0_arm64.whl (1.1 MB)
-  <span class=" -Color -Color-Red">   </span> Using cached catalogue-2.0.10-py3-none-any.whl (17 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached confection-0.1.5-py3-none-any.whl (35 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached packaging-24.2-py3-none-any.whl (65 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached pydantic-2.10.4-py3-none-any.whl (431 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl (1.8 MB)
-  <span class=" -Color -Color-Red">   </span> Using cached srsly-2.5.0-cp313-cp313-macosx_11_0_arm64.whl (632 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached wasabi-1.1.3-py3-none-any.whl (27 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached annotated_types-0.7.0-py3-none-any.whl (13 kB)
-  <span class=" -Color -Color-Red">   </span> Using cached typing_extensions-4.12.2-py3-none-any.whl (37 kB)
-  <span class=" -Color -Color-Red">   </span> Building wheels for collected packages: thinc
-  <span class=" -Color -Color-Red">   </span>   Building wheel for thinc (pyproject.toml): started
-  <span class=" -Color -Color-Red">   </span>   Building wheel for thinc (pyproject.toml): finished with status &#39;error&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
-  <span class=" -Color -Color-Red">   </span> 
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">Building wheel for thinc </span><span class=" -Color -Color-Bold -Color-Bold-Green">(</span><span class=" -Color -Color-Green">pyproject.toml</span><span class=" -Color -Color-Bold -Color-Bold-Green">)</span> did not run successfully.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">╰─&gt;</span> <span class=" -Color -Color-Red">[383 lines of output]</span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> Cythonizing sources
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running bdist_wheel
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build_py
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/config.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/compat.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/mypy.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/types.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/about.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/model.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/optimizers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/api.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/loss.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/initializers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/schedules.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/remap_ids.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_debug.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/mxnetwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/siamese.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/concatenate.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_sum.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/softmax_activation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hashembed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/expand_window.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2padded.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_padded.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_nvtx_range.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/layernorm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/maxout.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/add.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/embed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/residual.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_first.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/parametricattention_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/chain.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/logistic.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/gelu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_cpu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/torchscriptwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/mish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sigmoid_activation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/pytorchwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_array.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/bidirectional.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hard_swish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/uniqued.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/padded2list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/cauchysimilarity.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_array2d.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/strings2arrays.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_getitem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_flatten_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/clipped_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_reshape.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/tensorflowwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/hard_swish_mobilenet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/noop.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/relu.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/swish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_signpost_interval.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/ragged2list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/tuplify.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_ragged.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2ragged.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/map_list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/dropout.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_last.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/list2array.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_list.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/lstm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_max.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/with_flatten.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/resizable.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sigmoid.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/multisoftmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/softmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/reduce_mean.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/array_getitem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/dish.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/parametricattention.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/clone.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/mps_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_param_server.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cupy_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_custom_kernels.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_cupy_allocators.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/conftest.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/enable_mxnet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/strategies.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_schedules.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_initializers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_optimizers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_util.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_indexing.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_config.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_serialize.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_loss.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_import__all__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/enable_tensorflow.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_examples.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/test_types.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/mxnet.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/tensorflow.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/pytorch.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/torchscript.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/pytorch_grad_scaler.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/shims/shim.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_flatten.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_hash_embed.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_layers_api.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_transforms.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_sparse_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_uniqued.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_combinators.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_tensorflow_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_resizable.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mnist.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_feed_forward.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_torchscriptwrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_parametric_attention_v2.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_reduce.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mappers.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_transforms.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_linear.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_softmax.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_pytorch_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_with_debug.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_mxnet_wrapper.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_shim.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_lstm.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/layers/test_basic_tagger.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/test_ops.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/backends/test_mem.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/extra/test_beam_search.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/extra/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/shims/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/shims/test_pytorch_grad_scaler.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/shims
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/test_mypy.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/test_model.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/test_validation.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/model/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/model
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/test_issue208.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/test_issue564.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/fail_no_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/success_no_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/fail_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/modules/success_plugin.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/modules
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/test_issue519.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/regression/issue519/program.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/regression/issue519
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/tests/__init__.py -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running egg_info
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing thinc.egg-info/PKG-INFO
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing dependency_links to thinc.egg-info/dependency_links.txt
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing entry points to thinc.egg-info/entry_points.txt
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing requirements to thinc.egg-info/requires.txt
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing top-level names to thinc.egg-info/top_level.txt
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/Python.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayscalars.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarraytypes.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ufuncobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/Python.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/arrayscalars.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarrayobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ndarraytypes.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> dependency /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include/numpy/ufuncobject.h won&#39;t be automatically included in the manifest: the path must be relative
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> reading manifest file &#39;thinc.egg-info/SOURCES.txt&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> reading manifest template &#39;MANIFEST.in&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> no previously-included directories found matching &#39;tmp&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> adding license file &#39;LICENSE&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> writing manifest file &#39;thinc.egg-info/SOURCES.txt&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/setuptools/command/build_py.py:212: _Warning: Package &#39;thinc.tests.mypy.configs&#39; is absent from the `packages` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         # Package would be ignored #
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Python recognizes &#39;thinc.tests.mypy.configs&#39; as an importable package[^1],
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         but it is absent from setuptools&#39; `packages` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         This leads to an ambiguous overall configuration. If you want to distribute this
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         package, please make sure that &#39;thinc.tests.mypy.configs&#39; is explicitly added
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         to the `packages` configuration field.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Alternatively, you can also rely on setuptools&#39; discovery methods
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         (for example by using `find_namespace_packages(...)`/`find_namespace:`
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         instead of `find_packages(...)`/`find:`).
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package discovery&quot; on setuptools documentation page:
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         If you don&#39;t want &#39;thinc.tests.mypy.configs&#39; to be distributed and are
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         already explicitly excluding &#39;thinc.tests.mypy.configs&#39; via
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         you can try to use `exclude_package_data`, or `include-package-data=False` in
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         combination with a more fine grained `package-data` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package data files&quot; on setuptools documentation page:
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         [^1]: For Python, any directory (with suitable naming) can be imported,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               even if it does not contain any `.py` files.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               On the other hand, currently there is no concept of package data
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               directory, all directories are treated like packages.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   check.warn(importable)
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/setuptools/command/build_py.py:212: _Warning: Package &#39;thinc.tests.mypy.outputs&#39; is absent from the `packages` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         # Package would be ignored #
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ############################
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Python recognizes &#39;thinc.tests.mypy.outputs&#39; as an importable package[^1],
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         but it is absent from setuptools&#39; `packages` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         This leads to an ambiguous overall configuration. If you want to distribute this
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         package, please make sure that &#39;thinc.tests.mypy.outputs&#39; is explicitly added
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         to the `packages` configuration field.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         Alternatively, you can also rely on setuptools&#39; discovery methods
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         (for example by using `find_namespace_packages(...)`/`find_namespace:`
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         instead of `find_packages(...)`/`find:`).
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package discovery&quot; on setuptools documentation page:
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         If you don&#39;t want &#39;thinc.tests.mypy.outputs&#39; to be distributed and are
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         already explicitly excluding &#39;thinc.tests.mypy.outputs&#39; via
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         you can try to use `exclude_package_data`, or `include-package-data=False` in
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         combination with a more fine grained `package-data` configuration.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         You can read more about &quot;package data files&quot; on setuptools documentation page:
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         [^1]: For Python, any directory (with suitable naming) can be imported,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               even if it does not contain any `.py` files.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               On the other hand, currently there is no concept of package data
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>               directory, all directories are treated like packages.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>         ********************************************************************************
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> !!
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   check.warn(importable)
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/py.typed -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/premap_ids.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/layers/sparselinear.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/layers
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_custom_kernels.cu -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/_murmur3.cu -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cblas.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cblas.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/cpu_kernels.hh -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/linalg.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/linalg.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/numpy_ops.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/backends/numpy_ops.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/__init__.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/search.pxd -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/search.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/configs/mypy-default.ini -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/configs/mypy-plugin.ini -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/configs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/fail-no-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/fail-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/success-no-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/tests/mypy/outputs/success-plugin.txt -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/tests/mypy/outputs
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> copying thinc/extra/tests/c_test_search.pyx -&gt; build/lib.macosx-15.0-arm64-cpython-313/thinc/extra/tests
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> running build_ext
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> building &#39;thinc.backends.cblas&#39; extension
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> creating build/temp.macosx-15.0-arm64-cpython-313/thinc/backends
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> clang++ -fno-strict-overflow -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -O3 -Wall -I/private/var/folders/y1/59wdy6r54jscg6xzv_zjnzf80000gn/T/pip-build-env-25rfs3as/overlay/lib/python3.13/site-packages/numpy/_core/include -I/opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13 -I/Users/justin/Library/Caches/pypoetry/virtualenvs/jupyter-blog-KkQaDO1y-py3.13/include -I/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/include/python3.13 -c thinc/backends/cblas.cpp -o build/temp.macosx-15.0-arm64-cpython-313/thinc/backends/cblas.o -O3 -Wno-strict-prototypes -Wno-unused-function -std=c++11
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:871:59: warning: &#39;Py_UNICODE&#39; is deprecated [-Wdeprecated-declarations]
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   871 | static CYTHON_INLINE size_t __Pyx_Py_UNICODE_strlen(const Py_UNICODE *u) {
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                           ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/unicodeobject.h:10:1: note: &#39;Py_UNICODE&#39; has been explicitly marked deprecated here
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    10 | Py_DEPRECATED(3.13) typedef wchar_t Py_UNICODE;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       | ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/pyport.h:251:54: note: expanded from macro &#39;Py_DEPRECATED&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   251 | #define Py_DEPRECATED(VERSION_UNUSED) __attribute__((__deprecated__))
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                      ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:872:11: warning: &#39;Py_UNICODE&#39; is deprecated [-Wdeprecated-declarations]
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   872 |     const Py_UNICODE *u_end = u;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |           ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/unicodeobject.h:10:1: note: &#39;Py_UNICODE&#39; has been explicitly marked deprecated here
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    10 | Py_DEPRECATED(3.13) typedef wchar_t Py_UNICODE;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       | ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/pyport.h:251:54: note: expanded from macro &#39;Py_DEPRECATED&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   251 | #define Py_DEPRECATED(VERSION_UNUSED) __attribute__((__deprecated__))
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                                      ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1908:22: error: use of undeclared identifier &#39;_PyList_Extend&#39;; did you mean &#39;PyList_Extend&#39;?
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1908 |     PyObject* none = _PyList_Extend((PyListObject*)L, v);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                      ^~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                      PyList_Extend
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/listobject.h:52:17: note: &#39;PyList_Extend&#39; declared here
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    52 | PyAPI_FUNC(int) PyList_Extend(PyObject *self, PyObject *iterable);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1908:37: error: cannot initialize a parameter of type &#39;PyObject *&#39; (aka &#39;_object *&#39;) with an rvalue of type &#39;PyListObject *&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1908 |     PyObject* none = _PyList_Extend((PyListObject*)L, v);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                     ^~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/listobject.h:52:41: note: passing argument to parameter &#39;self&#39; here
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>    52 | PyAPI_FUNC(int) PyList_Extend(PyObject *self, PyObject *iterable);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                         ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:1946:39: error: use of undeclared identifier &#39;_PyInterpreterState_GetConfig&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  1946 |     __pyx_assertions_enabled_flag = ! _PyInterpreterState_GetConfig(__Pyx_PyThreadState_Current-&gt;interp)-&gt;optimization_level;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                                       ^
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20354:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20354 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20550:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20550 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> thinc/backends/cblas.cpp:20822:27: error: no matching function for call to &#39;_PyLong_AsByteArray&#39;
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>  20822 |                 int ret = _PyLong_AsByteArray((PyLongObject *)v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>        |                           ^~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> /opt/homebrew/Cellar/python@3.13/3.13.1/Frameworks/Python.framework/Versions/3.13/include/python3.13/cpython/longobject.h:111:17: note: candidate function not viable: requires 6 arguments, but 5 were provided
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   111 | PyAPI_FUNC(int) _PyLong_AsByteArray(PyLongObject* v,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |                 ^                   ~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   112 |     unsigned char* bytes, size_t n,
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>   113 |     int little_endian, int is_signed, int with_exceptions);
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span>       |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> 2 warnings and 6 errors generated.
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> error: command &#39;/usr/bin/clang++&#39; failed with exit code 1
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">[end of output]</span>
-  <span class=" -Color -Color-Red">   </span> 
-  <span class=" -Color -Color-Red">   </span>   <span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
-  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">  ERROR: Failed building wheel for thinc</span>
-<span class=" -Color -Color-Red">     </span> Failed to build thinc
-  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based projects (thinc)</span>
-<span class=" -Color -Color-Red">     </span> 
-  <span class=" -Color -Color-Red">   </span> <span class=" -Color -Color-Red">[end of output]</span>
-  
-  <span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
-<span class=" -Color -Color-Bold -Color-Bold-Red">error</span>: <span class=" -Color -Color-Bold">subprocess-exited-with-error</span>
-
-<span class=" -Color -Color-Red">×</span> <span class=" -Color -Color-Green">pip subprocess to install build dependencies</span> did not run successfully.
-<span class=" -Color -Color-Red">│</span> exit code: <span class=" -Color -Color-Bold -Color-Bold-Cyan">1</span>
-<span class=" -Color -Color-Red">╰─&gt;</span> See above for output.
-
-<span class=" -Color -Color-Bold -Color-Bold-Magenta">note</span>: This error originates from a subprocess, and is likely not a problem with pip.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
@@ -883,18 +409,6 @@
 
 <span class="k">def</span><span class="w"> </span><span class="nf">search_images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">DDGS</span><span class="p">()</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_images</span><span class="p">))</span><span class="o">.</span><span class="n">itemgot</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">duckduckgo_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">fastcore.all</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span><span class="w"> </span><span class="nf">search_images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_images</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">DDGS</span><span class="p">()</span><span class="o">.</span><span class="n">images</span><span class="p">(</span><span class="n">keywords</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="n">max_images</span><span class="p">))</span><span class="o">.</span><span class="n">itemgot</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;duckduckgo_search&#39;
 </pre></div>
 </div>
 </div>
@@ -927,13 +441,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: &#39;dlopen(/opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/image.so, 0x0006): Symbol not found: __ZN3c1017RegisterOperatorsD1Ev
-  Referenced from: &lt;CFED5F8E-EC3F-36FD-AAA3-2C6C7F8D3DD9&gt; /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torchvision/image.so
-  Expected in:     &lt;C62FA868-4C49-3B20-AFA6-2F7F59A295B4&gt; /opt/homebrew/Caskroom/miniconda/base/envs/fastai/lib/python3.11/site-packages/torch/lib/libtorch_cpu.dylib&#39;If you don&#39;t plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
-  warn(
-</pre></div>
-</div>
-<img alt="_images/4e5ed276e7b57ef02b8fcec0ef81f4aa955f16d274694b589cb4d0196f505403.png" src="_images/4e5ed276e7b57ef02b8fcec0ef81f4aa955f16d274694b589cb4d0196f505403.png" />
+<img alt="_images/33b1e58b0906c3617c4002fff287ace0e80b3966fa5d4333c46765991f2f28a9.png" src="_images/33b1e58b0906c3617c4002fff287ace0e80b3966fa5d4333c46765991f2f28a9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -944,7 +452,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" src="_images/c29e4f9911a74002670b03449247227deb26076ae97a65346ad657b9a7ba8f5f.png" />
+<img alt="_images/7cb4f73a8b1873eb0806b8a0c90be9c0fcf06dbda940d0ba996ddfebe956bc66.png" src="_images/7cb4f73a8b1873eb0806b8a0c90be9c0fcf06dbda940d0ba996ddfebe956bc66.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -958,6 +466,87 @@
     <span class="n">download_images</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">urls</span><span class="o">=</span><span class="n">search_images</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> photo&#39;</span><span class="p">))</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">resize_images</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">download_images</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">urls</span><span class="o">=</span><span class="n">search_images</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="si">}</span><span class="s1"> photo&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">resize_images</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">path</span><span class="o">/</span><span class="n">o</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastai/vision/utils.py:104,</span> in <span class="ni">resize_images</span><span class="nt">(path, max_workers, max_size, recurse, dest, n_channels, ext, img_format, resample, resume, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">files</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">recurse</span><span class="o">=</span><span class="n">recurse</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">104</span> <span class="n">parallel</span><span class="p">(</span><span class="n">resize_image</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">src</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">n_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span> <span class="n">max_size</span><span class="o">=</span><span class="n">max_size</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="n">dest</span><span class="p">,</span> <span class="n">n_channels</span><span class="o">=</span><span class="n">n_channels</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="n">ext</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>                <span class="n">img_format</span><span class="o">=</span><span class="n">img_format</span><span class="p">,</span> <span class="n">resample</span><span class="o">=</span><span class="n">resample</span><span class="p">,</span> <span class="n">resume</span><span class="o">=</span><span class="n">resume</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/parallel.py:134,</span> in <span class="ni">parallel</span><span class="nt">(f, items, n_workers, total, progress, pause, method, threadpool, timeout, chunksize, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="k">if</span> <span class="n">total</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">progress_bar</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">134</span> <span class="k">return</span> <span class="n">L</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/foundation.py:100,</span> in <span class="ni">_L_Meta.__call__</span><span class="nt">(cls, x, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="bp">cls</span><span class="p">):</span> <span class="k">return</span> <span class="n">x</span>
+<span class="ne">--&gt; </span><span class="mi">100</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/foundation.py:108,</span> in <span class="ni">L.__init__</span><span class="nt">(self, items, use_list, match, *rest)</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span>     <span class="k">if</span> <span class="p">(</span><span class="n">use_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_array</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">108</span>         <span class="n">items</span> <span class="o">=</span> <span class="n">listify</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="n">use_list</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">match</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/site-packages/fastcore/basics.py:79,</span> in <span class="ni">listify</span><span class="nt">(o, use_list, match, *rest)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="n">o</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_array</span><span class="p">(</span><span class="n">o</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">79</span> <span class="k">elif</span> <span class="n">is_iter</span><span class="p">(</span><span class="n">o</span><span class="p">):</span> <span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="k">else</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/process.py:575,</span> in <span class="ni">_chain_from_iterable_of_lists</span><span class="nt">(iterable)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span><span class="w"> </span><span class="nf">_chain_from_iterable_of_lists</span><span class="p">(</span><span class="n">iterable</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="sd">     Specialized implementation of itertools.chain.from_iterable.</span>
+<span class="g g-Whitespace">    </span><span class="mi">572</span><span class="sd">     Each item in *iterable* should be a list.  This function is</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span><span class="sd">     careful not to keep references to yielded objects.</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">575</span>     <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span>         <span class="n">element</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span>         <span class="k">while</span> <span class="n">element</span><span class="p">:</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:621,</span> in <span class="ni">Executor.map.&lt;locals&gt;.result_iterator</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span> <span class="k">while</span> <span class="n">fs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>     <span class="c1"># Careful not to keep a reference to the popped future</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">621</span>         <span class="k">yield</span> <span class="n">_result_or_cancel</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>         <span class="k">yield</span> <span class="n">_result_or_cancel</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">())</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:319,</span> in <span class="ni">_result_or_cancel</span><span class="nt">(***failed resolving arguments***)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">319</span>         <span class="k">return</span> <span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">fut</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/concurrent/futures/_base.py:453,</span> in <span class="ni">Future.result</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">FINISHED</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_result</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">453</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CANCELLED</span><span class="p">,</span> <span class="n">CANCELLED_AND_NOTIFIED</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="k">raise</span> <span class="n">CancelledError</span><span class="p">()</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/blog/lib/python3.10/threading.py:320,</span> in <span class="ni">Condition.wait</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">try</span><span class="p">:</span>    <span class="c1"># restore state no matter what (e.g., KeyboardInterrupt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">320</span>         <span class="n">waiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">gotit</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1151,8 +740,8 @@ Probability it&#39;s a forest: 1.0000
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="prepare-the-model-for-use-in-an-application">
-<h1>Prepare the model for use in an application<a class="headerlink" href="#prepare-the-model-for-use-in-an-application" title="Link to this heading">#</a></h1>
+<section id="prepare-the-model-for-use-in-an-application">
+<h2>Prepare the model for use in an application<a class="headerlink" href="#prepare-the-model-for-use-in-an-application" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># export the model for use in an application (export.pkl)</span>
@@ -1211,8 +800,8 @@ Probability it&#39;s a forest: 1.0000
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="create-an-application-to-use-the-model">
-<h1>Create an application to use the model<a class="headerlink" href="#create-an-application-to-use-the-model" title="Link to this heading">#</a></h1>
+<section id="create-an-application-to-use-the-model">
+<h2>Create an application to use the model<a class="headerlink" href="#create-an-application-to-use-the-model" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-Uqq<span class="w"> </span>fastai
@@ -1408,6 +997,7 @@ Jupyter command `jupyter-serverextension` not found.
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1440,13 +1030,22 @@ Jupyter command `jupyter-serverextension` not found.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="markdown-notebooks.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="markdown.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1465,11 +1064,10 @@ Jupyter command `jupyter-serverextension` not found.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Is it a bird?</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-model-for-use-in-an-application">Prepare the model for use in an application</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-the-model-for-use-in-an-application">Prepare the model for use in an application</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-application-to-use-the-model">Create an application to use the model</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
