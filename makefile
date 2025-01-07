@@ -1,9 +1,9 @@
 new-book:
-	poetry run jupyter-book create newBook
+	poetry run jupyter-book create content
 
 publish:
-	poetry run jupyter-book build myfirstbook
+	poetry run jupyter-book build content
 	git add -A
 	git commit -m 'publish'
 	git push
-	poetry run ghp-import -n -p -f myfirstbook/_build/html
+	poetry run ghp-import -n -p -f content/_build/html
